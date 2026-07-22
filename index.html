@@ -5,10 +5,15 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#f6f5fb;--card:#fff;--text:#16121f;--muted:#6c6683;--line:#e6e3f1;--chip:#f0eef8;
+/* Paleta de sistema da Apple (assets colors-unified-* da HIG, era Liquid Glass).
+   Sao os hexes atuais, nao os antigos: o roxo mudou de #BF5AF2 para #DB34F2.
+   A customizacao do usuario (dieta-custom) continua funcionando por cima. */
+:root{--bg:#F2F2F7;--card:#fff;--text:#000;--muted:rgba(60,60,67,.60);--line:rgba(60,60,67,.29);--chip:#E5E5EA;
  --shadow:0 6px 24px rgba(20,30,60,.08);--kcal:#7c4dff;--prot:#e8543f;--carb:#2f80ed;--gord:#f2a30f;
- --ok:#1f9d6b;--warn:#d9480f;--water:#2Bb0e8;--accent:#6a45e8;--accent2:#e9e3ff;--pink:#e5327f;--r:22px}
-[data-theme=dark]{--bg:#0e0c14;--card:#17141f;--text:#f2f0f8;--muted:#9a94ab;--line:#2a2536;--chip:#1f1b2b;--shadow:0 2px 14px rgba(0,0,0,.5);--ok:#3fca92;--pink:#ff6aa8;--r:22px;color-scheme:dark}
+ --ok:#34C759;--warn:#FF8D28;--water:#6D7CFF;--accent:#CB30E0;--accent2:#F7E4FB;--pink:#FF2D55;--r:22px}
+/* dark = superficies do iOS: fundo preto, agrupado #1C1C1E, elevado #2C2C2E.
+   Rotulo e branco com alfa (100/60%), que e como a Apple define. */
+[data-theme=dark]{--bg:#000;--card:#1C1C1E;--text:#fff;--muted:rgba(235,235,245,.60);--line:rgba(84,84,88,.65);--chip:#2C2C2E;--shadow:0 2px 14px rgba(0,0,0,.5);--ok:#30D158;--warn:#FF9230;--water:#6D7CFF;--accent:#DB34F2;--accent2:rgba(219,52,242,.20);--pink:#FF375F;--r:22px;color-scheme:dark}
 html,body{background:var(--bg);color:var(--text);font-family:'Poppins',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
 .wrap{max-width:760px;margin:0 auto;padding:0 14px 72px}
 header{position:sticky;top:0;z-index:20;background:var(--card);color:var(--text);border-bottom:1px solid var(--line);border-radius:0;padding:14px 16px 16px;transition:color .35s}
@@ -35,6 +40,23 @@ header{position:sticky;top:0;z-index:20;background:var(--card);color:var(--text)
 .prog .clr{background:none;border:none;color:var(--muted);font-size:.72rem;font-weight:700;cursor:pointer;text-decoration:underline}
 .water .wtop{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.water .wt{font-weight:800;font-size:1rem;display:flex;align-items:center;gap:7px}.water .wv{font-size:.8rem;color:var(--muted);font-weight:700}
 .cups{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}.cup{width:26px;height:32px;border:2px solid var(--water);border-radius:4px 4px 7px 7px;background:var(--chip)}.cup.on{background:var(--water)}
+/* ── o card de agua E o copo ────────────────────────────────────────────
+   A agua sobe conforme o consumo. O NIVEL e geometria (altura do bloco),
+   nao animacao: se nada animar, o nivel continua correto e so a onda para. */
+.water{position:relative;overflow:hidden;isolation:isolate}
+.water>*{position:relative;z-index:1}
+.wfill{position:absolute;left:0;right:0;bottom:0;z-index:0;pointer-events:none;
+ background:linear-gradient(180deg,color-mix(in srgb,var(--water) 42%,transparent),color-mix(in srgb,var(--water) 20%,transparent));
+ transition:height .45s cubic-bezier(.4,0,.2,1)}
+.wfill::before,.wfill::after{content:'';position:absolute;left:0;bottom:100%;width:200%;height:12px;
+ background:radial-gradient(ellipse 50% 100% at 50% 100%,color-mix(in srgb,var(--water) 42%,transparent) 60%,transparent 61%);
+ background-size:50px 12px;background-repeat:repeat-x;animation:wwave 7s linear infinite}
+.wfill::after{opacity:.45;height:9px;animation-duration:11s;animation-direction:reverse}
+@keyframes wwave{from{transform:translateX(0)}to{transform:translateX(-50px)}}
+/* brilho de vidro na borda de cima */
+.water::after{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
+ background:linear-gradient(180deg,rgba(255,255,255,.06),transparent 42%)}
+@media (prefers-reduced-motion:reduce){.wfill::before,.wfill::after{animation:none}}
 .wbtns{display:flex;gap:8px}.wbtns button{flex:1;border:none;border-radius:12px;padding:11px;font-weight:800;cursor:pointer;background:var(--chip);color:var(--text)}.wbtns .add{background:var(--water);color:#fff}
 .meal{background:var(--card);border-radius:16px;padding:13px 14px;box-shadow:var(--shadow);margin-bottom:11px;border-left:5px solid var(--accent)}.meal.done{border-left-color:var(--ok)}
 .meal .top{display:flex;align-items:center;gap:9px;margin-bottom:9px}.meal .ico{font-size:1.2rem}.meal .name{font-weight:800;font-size:1rem;flex:1}
@@ -170,7 +192,9 @@ header{position:sticky;top:0;z-index:20;background:var(--card);color:var(--text)
 .homehead{margin-bottom:18px}
 .homesub{color:var(--muted);font-size:.85rem;font-weight:600;margin-top:4px}
 .hgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
-.htile{position:relative;border:1px solid var(--line);background:var(--card);border-radius:16px;padding:22px 14px;display:flex;flex-direction:column;align-items:center;gap:9px;cursor:pointer;color:var(--text);font-family:inherit;box-shadow:var(--shadow)}
+.htile{position:relative;border:1px solid var(--line);background:var(--card);border-radius:16px;padding:22px 14px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:9px;cursor:pointer;color:var(--text);font-family:inherit;box-shadow:var(--shadow);min-height:132px}
+/* canto continuo da Apple; sem suporte fica o border-radius acima */
+@supports (corner-shape:squircle){.htile,.card,.sheet,.htile2{corner-shape:squircle}}
 .idcard{position:relative;overflow:hidden;border:1px solid var(--line);background:var(--card);border-radius:var(--r);padding:26px 22px 20px;margin-bottom:18px;box-shadow:var(--shadow)}
 .idaura{position:absolute;inset:0;pointer-events:none;opacity:.9;background:radial-gradient(60% 80% at 16% 0%,color-mix(in srgb,var(--accent) 45%,transparent),transparent 62%),radial-gradient(58% 88% at 96% 10%,color-mix(in srgb,var(--pink) 42%,transparent),transparent 60%)}
 .idcard>*{position:relative}
@@ -422,7 +446,9 @@ function renderMacros(){const D=DATA[person],t=dayTotals(),tg=targetOf();let tot
   requestAnimationFrame(()=>{document.querySelectorAll('.rgf').forEach(f=>f.style.strokeDashoffset=f.dataset.off);const pf=document.querySelector('.pfill');if(pf)pf.style.width=pp+'%';});
   const cd=$("#clrDay");if(cd)cd.onclick=()=>{for(const name of DATA[person].dias[day].order)for(let i=0;i<nIng(day,name);i++)delete consumed[ckey(name,i)];ls.set('dieta-consumed',consumed);syncLog();renderDay();};const bt=$("#balToggle");if(bt)bt.onclick=()=>{autoBal=!autoBal;ls.set('dieta-autobal',autoBal);if(autoBal)rebalance();renderDay();};const bn=$("#balNow");if(bn)bn.onclick=()=>{if(rebalance())renderDay();else renderDay();};}
 function renderWater(){const goal=DATA[person].meta.water,cup=cupML,wk=`${person}|${selDate}`;const ml=water[wk]||0;const cups=Math.max(1,Math.round(goal/cup));const filled=Math.round(ml/cup);let cu='';for(let i=0;i<cups;i++)cu+=`<div class="cup ${i<filled?'on':''}"></div>`;
-  $("#water").innerHTML=`<div class="wtop"><div class="wt">💧 Água${selDate===todayISO()?' — hoje':' — '+selDate.slice(8,10)+'/'+selDate.slice(5,7)}</div><div class="wv">${(ml/1000).toFixed(2).replace('.',',')} / ${(goal/1000).toFixed(1).replace('.',',')} L</div></div><div class="cups">${cu}</div><div class="wbtns"><button data-w="-1">− copo</button><button class="add" data-w="1">+ copo (${cup} ml)</button></div><div class="wcustom"><span class="wlab">Copo: <input id="wcup" type="number" inputmode="numeric" min="50" step="10" value="${cup}"> ml</span><span class="wsep">•</span><span class="wlab">Bebi: <input id="wadd" type="number" inputmode="numeric" min="0" step="10" placeholder="ml"></span><button id="waddBtn" class="add">adicionar</button></div>`;
+  // o card e o copo: a altura do bloco de agua e consumido/meta, travado em 100%
+  const nivel=Math.min(100,goal>0?Math.round(ml/goal*100):0);
+  $("#water").innerHTML=`<div class="wfill" style="height:${nivel}%"></div><div class="wtop"><div class="wt">💧 Água${selDate===todayISO()?' — hoje':' — '+selDate.slice(8,10)+'/'+selDate.slice(5,7)}</div><div class="wv">${(ml/1000).toFixed(2).replace('.',',')} / ${(goal/1000).toFixed(1).replace('.',',')} L</div></div><div class="cups">${cu}</div><div class="wbtns"><button data-w="-1">− copo</button><button class="add" data-w="1">+ copo (${cup} ml)</button></div><div class="wcustom"><span class="wlab">Copo: <input id="wcup" type="number" inputmode="numeric" min="50" step="10" value="${cup}"> ml</span><span class="wsep">•</span><span class="wlab">Bebi: <input id="wadd" type="number" inputmode="numeric" min="0" step="10" placeholder="ml"></span><button id="waddBtn" class="add">adicionar</button></div>`;
   const k=`${person}|${selDate}`;$("#water").querySelectorAll('[data-w]').forEach(b=>b.onclick=()=>{water[k]=Math.max(0,(water[k]||0)+(+b.dataset.w)*cupML);ls.set('dieta-water',water);renderWater();});const cupInp=$("#wcup");if(cupInp)cupInp.onchange=()=>{const v=Math.max(50,Math.round(+cupInp.value||250));cupML=v;ls.set('dieta-cup',v);renderWater();};const addInp=$("#wadd");const doAdd=()=>{const v=Math.round(+addInp.value||0);if(v>0){water[k]=Math.max(0,(water[k]||0)+v);ls.set('dieta-water',water);renderWater();}};const ab=$("#waddBtn");if(ab)ab.onclick=doAdd;if(addInp)addInp.addEventListener('keydown',ev=>{if(ev.key==='Enter'){ev.preventDefault();doAdd();}});}
 function renderMeals(){const D=DATA[person].dias[day],M=D.meals;let h="";
   for(const name of D.order){const icon=M[name].icon;const mm=macOf(effList(name));const N=nIng(day,name);const live=Array.from({length:N},(_,i)=>i).filter(i=>!removed[ikey(name,i)]);const allDone=live.length>0&&live.every(i=>isDone(ckey(name,i)));const nrem=N-live.length;const note=notes[mkey(name)]||"";
@@ -602,7 +628,7 @@ let _avTarget=null;
 function pickAvatar(p){_avTarget=p;const inp=$("#avFile");if(inp){inp.value='';inp.click();}}
 (function(){const inp=$("#avFile");if(inp)inp.onchange=e=>{const f=e.target.files&&e.target.files[0];if(!f||!_avTarget)return;const rd=new FileReader();rd.onload=()=>{const img=new Image();img.onload=()=>{const s=240,scale=Math.min(s/img.width,s/img.height,1),w=Math.max(1,Math.round(img.width*scale)),h=Math.max(1,Math.round(img.height*scale));const cv=document.createElement('canvas');cv.width=w;cv.height=h;cv.getContext('2d').drawImage(img,0,0,w,h);let url;try{url=cv.toDataURL('image/jpeg',0.82);}catch(_){url=rd.result;}avatars[_avTarget]=url;ls.set('dieta-avatars',avatars);renderIdentity();renderWho();if($("#ovCfg").classList.contains('open'))renderCfgPhotos();};img.onerror=()=>{};img.src=rd.result;};rd.readAsDataURL(f);};})();
 (function(){const el=$("#idAvs");if(el)el.onclick=e=>{const b=e.target.closest('[data-p]');if(b)pickAvatar(b.dataset.p);};})();
-function renderHome(){const t=todayISO();const set=(id,n)=>{const el=$("#"+id);if(el){el.textContent=n||'';el.classList.toggle('on',!!n);}};set('bTodo',(todos||[]).filter(x=>!x.done).length);set('bMercado',(mercado||[]).filter(x=>!x.done).length);set('bLivros',((livros&&livros.items)||[]).filter(x=>x.st==='lendo').length);renderIdentity();const hs=$("#homeSub");if(hs){const d=new Date(t+'T12:00:00');let s=d.toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long'});hs.textContent='Dia '+daysTogether()+' juntos · '+s.charAt(0).toUpperCase()+s.slice(1)+' · v29';}}
+function renderHome(){const t=todayISO();const set=(id,n)=>{const el=$("#"+id);if(el){el.textContent=n||'';el.classList.toggle('on',!!n);}};set('bTodo',(todos||[]).filter(x=>!x.done).length);set('bMercado',(mercado||[]).filter(x=>!x.done).length);set('bLivros',((livros&&livros.items)||[]).filter(x=>x.st==='lendo').length);renderIdentity();const hs=$("#homeSub");if(hs){const d=new Date(t+'T12:00:00');let s=d.toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long'});hs.textContent='Dia '+daysTogether()+' juntos · '+s.charAt(0).toUpperCase()+s.slice(1)+' · v30';}}
 (function(){const b=$("#tDieta");if(b)b.onclick=()=>$("#ovHome").classList.remove('open');})();
 (function(){const b=$("#tTV");if(b)b.onclick=()=>openTV();})();
 (function(){const b=$("#tDiogo");if(b)b.onclick=()=>openDiogo();})();
@@ -612,7 +638,7 @@ function renderHome(){const t=todayISO();const set=(id,n)=>{const el=$("#"+id);i
 (function(){const b=$("#btnHome");if(b)b.onclick=()=>{if(person==='Manuela')goHome();else goHomeD();};})();
 (function(){const b=$("#homeLogout");if(b)b.onclick=()=>{$("#ovHome").classList.remove('open');$("#ovWho").classList.add('open');};})();
 function goHomeD(){renderHomeD();$("#ovHomeD").classList.add('open');}
-function renderHomeD(){const el=$("#idAvsD");if(el)el.innerHTML='<span class="idav idav-d">'+avImg('Diogo')+'</span>';const b=$("#bTodoD");if(b){const n=(todosD||[]).filter(x=>!x.done).length;b.textContent=n||'';b.classList.toggle('on',!!n);}const bg=$("#bGastosD");if(bg){const n=(gastos||[]).filter(x=>x.st!=='quit').length;bg.textContent=n||'';bg.classList.toggle('on',!!n);}const hs=$("#homeSubD");if(hs){const t=todayISO();const d=new Date(t+'T12:00:00');let s=d.toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long'});hs.textContent=s.charAt(0).toUpperCase()+s.slice(1)+' · v29';}}
+function renderHomeD(){const el=$("#idAvsD");if(el)el.innerHTML='<span class="idav idav-d">'+avImg('Diogo')+'</span>';const b=$("#bTodoD");if(b){const n=(todosD||[]).filter(x=>!x.done).length;b.textContent=n||'';b.classList.toggle('on',!!n);}const bg=$("#bGastosD");if(bg){const n=(gastos||[]).filter(x=>x.st!=='quit').length;bg.textContent=n||'';bg.classList.toggle('on',!!n);}const hs=$("#homeSubD");if(hs){const t=todayISO();const d=new Date(t+'T12:00:00');let s=d.toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long'});hs.textContent=s.charAt(0).toUpperCase()+s.slice(1)+' · v30';}}
 (function(){const b=$("#tDietaD");if(b)b.onclick=()=>$("#ovHomeD").classList.remove('open');})();
 (function(){const b=$("#tTodoD");if(b)b.onclick=()=>openTodoD();})();
 (function(){const b=$("#homeLogoutD");if(b)b.onclick=()=>{$("#ovHomeD").classList.remove('open');$("#ovWho").classList.add('open');};})();
