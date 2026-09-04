@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#1F6FEB"><title>Dieta · Diogo & Manuela</title>
+<meta name="theme-color" content="#1F6FEB"><title>Manuela</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -323,7 +323,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 .cfgc{width:56px;height:38px;border:1.5px solid var(--line);border-radius:10px;background:var(--chip);padding:2px;cursor:pointer;flex:0 0 auto}
 #livEdInfo{overflow:hidden;margin-bottom:6px;font-size:.85rem;color:var(--muted)}</style></head>
 <body data-theme="light">
-<header id="hdr"><div class="htop"><div class="brand"><span id="hemoji">💪</span> <span>Dieta · <span id="pname">Diogo</span></span></div><div class="hbtns"><button class="icobtn" id="btnHome" style="display:none">🏠</button><button class="icobtn" id="themeBtn">🌙</button></div></div>
+<header id="hdr"><div class="htop"><div class="brand"><span id="hemoji">💪</span> <span><span id="pname">Manuela</span></span></div><div class="hbtns"><button class="icobtn" id="btnHome" style="display:none">🏠</button><button class="icobtn" id="themeBtn">🌙</button></div></div>
  <div class="subtitle" id="subtitle"></div><div class="badges" id="badges"></div>
 </header>
 <div class="wrap">
@@ -331,13 +331,13 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
  <div class="fab"><button id="btnProg">📅 Progresso</button><button id="btnGuia">📋 Guia</button><button id="btnCompras">🛒 Compras</button><button id="btnTV" style="display:none">📺 Manuela Time</button></div>
  <div class="foot">Toque num <b>item</b> pra trocar por qualquer alimento da <b>TBCA</b> · ⬜ marca (reset 24h) · ✏️ edita.<br>Tudo salvo neste aparelho. Feito sob medida 💙🌸</div></div>
 
-<div class="overlay open" id="ovAuth"><div class="sheet" style="text-align:center"><h2 style="justify-content:center">🔒 Dieta privada</h2><div class="hint">Digite a senha pra entrar e sincronizar entre celular e PC.</div><input id="authPass" type="password" placeholder="senha" autocomplete="current-password" onkeydown="if(event.key==='Enter')document.querySelector('#authLogin').click()"><div id="authErr"></div><button class="whob" id="authLogin" style="flex-direction:row">Entrar</button></div></div>
-<div class="overlay" id="ovWho"><div class="sheet" style="text-align:center"><h2 style="justify-content:center">Quem vai usar?</h2><div class="hint">Escolha o perfil — mostra só a dieta dessa pessoa.</div><div class="whobtns"><button class="whob" data-p="Diogo"><span class="whoav" id="whoDiogo">💪</span><span>Diogo</span></button><button class="whob" data-p="Manuela"><span class="whoav" id="whoManuela">🌸</span><span>Manuela</span></button></div><button class="addnote" id="btnLogout" style="margin-top:14px">🔒 Sair (logout)</button></div></div>
-<div class="overlay" id="ovHome"><div class="sheet homesheet"><div class="idcard"><div class="idaura"></div><button class="idseal" type="button" title="nosso número">Nº 22·4</button><div class="idavs" id="idAvs"></div><div class="idname">Manuela &amp; Diogo</div><div class="homesub" id="homeSub"></div></div><div class="hgrid"><button class="htile" id="tDiogo"><span class="hi">💚</span><span class="hl">Diogo</span></button><button class="htile" id="tTodo"><span class="hi">✅</span><span class="hl">Coisas pra fazer</span><span class="hb" id="bTodo"></span></button><button class="htile" id="tMercado"><span class="hi">🛒</span><span class="hl">Mercado</span><span class="hb" id="bMercado"></span></button><button class="htile" id="tDieta"><span class="hi">🍽️</span><span class="hl">Dieta</span></button><button class="htile" id="tTV"><span class="hi">📺</span><span class="hl">TV Time</span></button><button class="htile" id="tLivros"><span class="hi">📚</span><span class="hl">Livros</span><span class="hb" id="bLivros"></span></button></div><button class="addnote" id="homeCfg" style="margin-top:16px">⚙️ Personalizar</button><button class="addnote" id="homeLogout" style="margin-top:8px">🔒 Trocar perfil</button></div></div>
-<div class="overlay" id="ovHomeD"><div class="sheet homesheet"><div class="idcard"><div class="idaura"></div><div class="idavs" id="idAvsD"></div><div class="idname">Diogo 💪</div><div class="homesub" id="homeSubD"></div></div><div class="hgrid"><button class="htile" id="tDietaD"><span class="hi">🍽️</span><span class="hl">Dieta</span></button><button class="htile" id="tTodoD"><span class="hi">✅</span><span class="hl">Coisas pra fazer</span><span class="hb" id="bTodoD"></span></button><button class="htile" id="tGastosD"><span class="hi">💸</span><span class="hl">Gastos</span><span class="hb" id="bGastosD"></span></button></div><button class="addnote" id="homeLogoutD" style="margin-top:16px">🔒 Trocar perfil</button></div></div>
-<div class="overlay" id="ovTodoD"><div class="sheet"><h2><span>✅ Coisas pra fazer</span><button class="x" data-close>✕</button></h2><div class="addrow"><input id="todoDIn" placeholder="Nova tarefa…" autocomplete="off"><button id="todoDAdd" class="add">+</button></div><div id="todoDList"></div></div></div>
-<div class="overlay" id="ovGastos"><div class="sheet"><h2><span>💸 Gastos</span><button class="x" data-close>✕</button></h2><div class="hint">Dinheiro que sai e você quer controlar: reembolsos, empréstimos, o que gastou por outra pessoa. Marque ✅ quando receber de volta.</div><div id="gastSumBox"></div><div id="gastCatSum"></div><div class="gsub">➕ Adicionar gasto</div><div class="evadd"><input id="gastDesc" placeholder="Descrição (ex.: Meta, Claude…)" autocomplete="off"><div class="evadd-row"><input id="gastVal" inputmode="text" placeholder="Valor: 230,10+15,45" autocomplete="off"><input id="gastWho" placeholder="Pra quem / conta (opcional)" autocomplete="off"></div><div class="tvedseg" id="gastCat"></div><button id="gastAdd" class="add">➕ Adicionar</button></div><div class="tvseg" id="gastSeg"><button data-f="all" class="active">Tudo</button><button data-f="pend">⬜ Pendentes</button><button data-f="quit">✅ Recebidos</button></div><div id="gastList"></div></div></div>
-<div class="overlay" id="ovGastoEd"><div class="sheet"><h2><span>✏️ Editar gasto</span><button class="x" data-close>✕</button></h2><div class="tvedlab">Descrição</div><input id="geDesc" class="cfgn" style="width:100%" autocomplete="off"><div class="tvedlab">Valor (ex.: 230,10 ou 230,10+15,45)</div><input id="geVal" class="cfgn" style="width:100%" inputmode="text" autocomplete="off"><div class="tvedlab">Categoria</div><div class="tvedseg" id="geCat"></div><div class="tvedlab">Pra quem / conta</div><input id="geWho" class="cfgn" style="width:100%" autocomplete="off"><div class="tvedlab">Data</div><input id="geDate" type="date" class="cfgn" style="width:100%"><div class="tvedlab">Status</div><div class="tvedseg" id="geStat"></div><button class="whob" id="geSave" style="flex-direction:row;margin-top:14px">Salvar</button><button class="addnote" id="geDel" style="color:var(--warn);border-color:var(--warn);margin-top:8px">🗑️ Excluir</button></div></div>
+
+
+<div class="overlay" id="ovHome"><div class="sheet homesheet"><div class="idcard"><div class="idaura"></div><button class="idseal" type="button" title="nosso número">Nº 22·4</button><div class="idavs" id="idAvs"></div><div class="idname">Manuela &amp; Diogo</div><div class="homesub" id="homeSub"></div></div><div class="hgrid"><button class="htile" id="tDiogo"><span class="hi">💚</span><span class="hl">Diogo</span></button><button class="htile" id="tTodo"><span class="hi">✅</span><span class="hl">Coisas pra fazer</span><span class="hb" id="bTodo"></span></button><button class="htile" id="tMercado"><span class="hi">🛒</span><span class="hl">Mercado</span><span class="hb" id="bMercado"></span></button><button class="htile" id="tTV"><span class="hi">📺</span><span class="hl">TV Time</span></button><button class="htile" id="tLivros"><span class="hi">📚</span><span class="hl">Livros</span><span class="hb" id="bLivros"></span></button></div><button class="addnote" id="homeCfg" style="margin-top:16px">⚙️ Personalizar</button></div></div>
+
+
+
+
 <input type="file" id="avFile" accept="image/*" style="display:none">
 <div class="overlay" id="ovDiogo"><div class="sheet calsheet"><h2><span id="ttlDiogo">💚 Diogo</span><button class="x" data-close>✕</button></h2><div class="dgcount" id="dgCount"></div><div class="tvseg" id="dgSeg"><button data-v="lista" class="active">Lista</button><button data-v="cal">Calendário</button><button data-v="tl">Linha do tempo</button></div><div class="evadd"><div class="evadd-row"><input id="dgDate" type="date"><input id="dgText" placeholder="O que aconteceu…" autocomplete="off"></div><button id="dgAdd" class="add">➕ Adicionar momento</button></div><div id="dgBody"></div></div></div>
 <div class="overlay" id="ovTodo"><div class="sheet"><h2><span id="ttlTodo">✅ Coisas pra fazer</span><button class="x" data-close>✕</button></h2><div class="addrow"><input id="todoIn" placeholder="Nova tarefa…" autocomplete="off"><button id="todoAdd" class="add">+</button></div><div id="todoList"></div></div></div>
@@ -384,7 +384,7 @@ let mercado=ls.get('dieta-mercado',[]);let diogo=ls.get('dieta-diogo',null);if(!
 let gastos=ls.get('dieta-gastos',null);if(gastos===null){gastos=[{id:'gseed0',desc:'Meta',cents:24555,cat:'reemb',who:'',st:'pend',d:''},{id:'gseed1',desc:'Claude',cents:110000,cat:'reemb',who:'',st:'pend',d:''},{id:'gseed2',desc:'Meta — outra conta que bloqueava a principal da seedz',cents:44881,cat:'reemb',who:'',st:'pend',d:''},{id:'gseed3',desc:'Dinheiro físico',cents:140000,cat:'reemb',who:'',st:'quit',d:''},{id:'gseed4',desc:'Meta',cents:50862,cat:'reemb',who:'',st:'pend',d:''}];ls.set('dieta-gastos',gastos);}else if(!Array.isArray(gastos))gastos=[];
 let uiCfg=ls.get('dieta-ui',{tiles:{},colors:{}});if(!uiCfg||typeof uiCfg!=='object')uiCfg={tiles:{},colors:{}};if(!uiCfg.tiles)uiCfg.tiles={};if(!uiCfg.colors)uiCfg.colors={};
 let avatars=ls.get('dieta-avatars',{});if(!avatars||typeof avatars!=='object')avatars={};const ANNIV='2026-01-02';function daysTogether(){const a=Date.parse(ANNIV+'T00:00:00'),b=Date.parse(todayISO()+'T00:00:00');return Math.max(0,Math.round((b-a)/864e5));}
-const UI_TILES=[['tDiogo','💚','Diogo','ttlDiogo'],['tTodo','✅','Coisas pra fazer','ttlTodo'],['tMercado','🛒','Mercado','ttlMercado'],['tDieta','🍽️','Dieta',null],['tTV','📺','TV Time','ttlTV'],['tLivros','📚','Livros','ttlLivros']];
+const UI_TILES=[['tDiogo','💚','Diogo','ttlDiogo'],['tTodo','✅','Coisas pra fazer','ttlTodo'],['tMercado','🛒','Mercado','ttlMercado'],['tTV','📺','TV Time','ttlTV'],['tLivros','📚','Livros','ttlLivros']];
 const UI_COLORS=[['accent','Cor de destaque'],['bg','Fundo'],['card','Cartões'],['chip','Botões e chips'],['text','Texto']];
 function toHex(v){v=String(v||'').trim();if(/^#[0-9a-fA-F]{6}$/.test(v))return v;if(/^#[0-9a-fA-F]{3}$/.test(v))return '#'+v[1]+v[1]+v[2]+v[2]+v[3]+v[3];return '#000000';}
 function applyUIColors(){const c=uiCfg.colors||{};const r=document.body.style;for(const pr of UI_COLORS){const k=pr[0];if(c[k])r.setProperty('--'+k,c[k]);else r.removeProperty('--'+k);}if(c.accent)r.setProperty('--accent2','color-mix(in srgb, '+c.accent+' 35%, var(--bg))');else r.removeProperty('--accent2');if(c.bg){const tc=document.querySelector('meta[name=theme-color]');if(tc)tc.setAttribute('content',c.bg);}}
@@ -484,7 +484,7 @@ const isDone=k=>!!consumed[k];
 const pad=n=>String(n).padStart(2,'0');
 const todayISO=()=>new Date().toLocaleDateString('en-CA',{timeZone:'America/Sao_Paulo'});
 function todayWd(){const w=new Date().toLocaleDateString('en-US',{timeZone:'America/Sao_Paulo',weekday:'short'});return {Mon:0,Tue:1,Wed:2,Thu:3,Fri:4,Sat:5,Sun:6}[w];}
-let person="Diogo", day=DIAS[todayWd()]||"Segunda", selDate=todayISO();
+let person="Manuela", day=DIAS[todayWd()]||"Segunda", selDate=todayISO();
 const ikey=(m,i)=>`${person}|${day}|${m}|${i}`;const mkey=m=>`${person}|${day}|${m}`;const ckey=(m,i)=>`${person}|${selDate}|${m}|${i}`;const WD=ds=>DIAS[(new Date(ds+'T12:00:00').getDay()+6)%7];
 function macOf(ings){let k=0,p=0,c=0,f=0,fb=0,ca=0;for(const [key,q] of ings){const F=FOODS[key];if(!F)continue;const m=F.per==='g'?q/100:q;k+=F.kc*m;p+=F.p*m;c+=F.c*m;f+=F.f*m;fb+=(F.fib||0)*m;ca+=(F.ca||0)*m;}return {kcal:Math.round(k),p:Math.round(p),c:Math.round(c),g:Math.round(f),fib:Math.round(fb),ca:Math.round(ca)};}
 function ren(key,q){const F=FOODS[key],n=F.nome,u=F.un;
@@ -530,7 +530,7 @@ function renderDay(){const _y=window.scrollY;renderDays();renderMacros();renderW
 function renderAll(){setAccent(person);renderHead();renderDay();syncLog();const _bt=$("#btnTV");if(_bt)_bt.style.display=person==='Manuela'?'':'none';const _hb=$("#btnHome");if(_hb)_hb.style.display='';}
 function syncLog(){const wd=WD(selDate);let tot=0,done=0;for(const name of DATA[person].dias[wd].order){for(let i=0;i<nIng(wd,name);i++){tot++;if(isDone(`${person}|${selDate}|${name}|${i}`))done++;}}wlog[`${person}|${selDate}`]=tot?Math.round(done/tot*100):0;ls.set('dieta-log',wlog);}
 
-function chooseWho(p){person=p;ls.set('dieta-person',p);day=DIAS[todayWd()]||"Segunda";selDate=todayISO();try{setAccent(p)}catch(e){}$("#ovWho").classList.remove('open');$("#ovHome").classList.remove('open');$("#ovHomeD").classList.remove('open');renderAll();if(p==='Manuela')goHome();else goHomeD();}document.querySelectorAll('.whob').forEach(b=>b.onclick=()=>chooseWho(b.dataset.p));
+/* So existe um perfil agora — nao ha quem escolher. */
 $("#days").onclick=e=>{const b=e.target.closest('.day');if(!b)return;selDate=b.dataset.d;day=WD(selDate);renderDay();};
 $("#meals").addEventListener('click',e=>{const btn=e.target.closest('[data-act]');if(!btn)return;const act=btn.dataset.act;const li=e.target.closest('.item');const meal=(li&&li.dataset.m)||btn.dataset.m;
   if(act==='toggle'){const i=+li.dataset.i;const k=ckey(meal,i);isDone(k)?delete consumed[k]:consumed[k]=1;ls.set('dieta-consumed',consumed);syncLog();renderDay();}
@@ -606,7 +606,7 @@ $("#btnCompras").onclick=()=>{cperson=person;document.querySelectorAll('#cseg bu
 document.querySelectorAll('.overlay').forEach(o=>o.onclick=e=>{if(e.target===o||e.target.dataset.close!==undefined)o.classList.remove('open');});
 const tb=$("#themeBtn");function setTheme(t){document.body.dataset.theme=t;tb.textContent=t==='dark'?'☀️':'🌙';ls.set('dieta-theme',t);try{setAccent(person)}catch(e){}}if(ls.get('dieta-themev2')){setTheme(ls.get('dieta-theme','dark'));}else{ls.set('dieta-themev2',1);setTheme('dark');}tb.onclick=()=>setTheme(document.body.dataset.theme==='dark'?'light':'dark');
 let _lastDay=todayISO();
-function checkRollover(){if($("#ovAuth")&&$("#ovAuth").classList.contains('open'))return;const t=todayISO();if(t!==_lastDay){_lastDay=t;day=DIAS[todayWd()]||day;selDate=t;renderAll();}else{renderDays();renderWater();}}
+function checkRollover(){const t=todayISO();if(t!==_lastDay){_lastDay=t;day=DIAS[todayWd()]||day;selDate=t;renderAll();}else{renderDays();renderWater();}}
 document.addEventListener('visibilitychange',()=>{if(!document.hidden)checkRollover();});
 window.addEventListener('focus',checkRollover);
 setInterval(()=>{if(!document.hidden)checkRollover();},60000);
@@ -704,27 +704,29 @@ document.querySelectorAll('#tvSeg button').forEach(b=>b.onclick=()=>{tvFilter=b.
 (function(){const bd=$("#tvBody");if(bd)bd.onclick=e=>{const c=e.target.closest('.tvcard');if(c)tvOpenEd(c.dataset.id);};})();
 function goHome(){renderHome();$("#ovHome").classList.add('open');}
 function avImg(p){const src=avatars&&avatars[p];return src?'<img src="'+esc(src)+'" alt="'+esc(p)+'">':'<span class="avinit av-'+p+'">'+(p?p[0]:'?')+'</span>';}
-function renderIdentity(){const el=$("#idAvs");if(el)el.innerHTML='<button type="button" class="idav idav-m" data-p="Manuela" aria-label="Foto da Manuela">'+avImg('Manuela')+'</button><button type="button" class="idav idav-d" data-p="Diogo" aria-label="Foto do Diogo">'+avImg('Diogo')+'</button>';}
-function renderWho(){for(const p of ['Diogo','Manuela']){const el=$("#who"+p);if(el&&avatars[p])el.innerHTML='<img src="'+esc(avatars[p])+'" alt="'+esc(p)+'">';}}
-function renderCfgPhotos(){const el=$("#cfgPhotos");if(!el)return;el.innerHTML=['Manuela','Diogo'].map(p=>'<button type="button" class="cfgph" data-p="'+p+'">'+avImg(p)+'<span>'+p+'</span><b>'+(avatars[p]?'Trocar':'Adicionar')+'</b></button>').join('');el.querySelectorAll('.cfgph').forEach(b=>b.onclick=()=>pickAvatar(b.dataset.p));}
+function renderIdentity(){const el=$("#idAvs");if(el)el.innerHTML='<button type="button" class="idav idav-m" data-p="Manuela" aria-label="Foto da Manuela">'+avImg('Manuela')+'</button>';}
+function renderWho(){}
+function renderCfgPhotos(){const el=$("#cfgPhotos");if(!el)return;el.innerHTML=['Manuela'].map(p=>'<button type="button" class="cfgph" data-p="'+p+'">'+avImg(p)+'<span>'+p+'</span><b>'+(avatars[p]?'Trocar':'Adicionar')+'</b></button>').join('');el.querySelectorAll('.cfgph').forEach(b=>b.onclick=()=>pickAvatar(b.dataset.p));}
 let _avTarget=null;
 function pickAvatar(p){_avTarget=p;const inp=$("#avFile");if(inp){inp.value='';inp.click();}}
 (function(){const inp=$("#avFile");if(inp)inp.onchange=e=>{const f=e.target.files&&e.target.files[0];if(!f||!_avTarget)return;const rd=new FileReader();rd.onload=()=>{const img=new Image();img.onload=()=>{const s=240,scale=Math.min(s/img.width,s/img.height,1),w=Math.max(1,Math.round(img.width*scale)),h=Math.max(1,Math.round(img.height*scale));const cv=document.createElement('canvas');cv.width=w;cv.height=h;cv.getContext('2d').drawImage(img,0,0,w,h);let url;try{url=cv.toDataURL('image/jpeg',0.82);}catch(_){url=rd.result;}avatars[_avTarget]=url;ls.set('dieta-avatars',avatars);renderIdentity();renderWho();if($("#ovCfg").classList.contains('open'))renderCfgPhotos();};img.onerror=()=>{};img.src=rd.result;};rd.readAsDataURL(f);};})();
 (function(){const el=$("#idAvs");if(el)el.onclick=e=>{const b=e.target.closest('[data-p]');if(b)pickAvatar(b.dataset.p);};})();
-function renderHome(){const t=todayISO();const set=(id,n)=>{const el=$("#"+id);if(el){el.textContent=n||'';el.classList.toggle('on',!!n);}};set('bTodo',(todos||[]).filter(x=>!x.done).length);set('bMercado',(mercado||[]).filter(x=>!x.done).length);set('bLivros',((livros&&livros.items)||[]).filter(x=>x.st==='lendo').length);renderIdentity();const hs=$("#homeSub");if(hs){const d=new Date(t+'T12:00:00');let s=d.toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long'});hs.textContent='Dia '+daysTogether()+' juntos · '+s.charAt(0).toUpperCase()+s.slice(1)+' · v33';}}
+function renderHome(){const t=todayISO();const set=(id,n)=>{const el=$("#"+id);if(el){el.textContent=n||'';el.classList.toggle('on',!!n);}};set('bTodo',(todos||[]).filter(x=>!x.done).length);set('bMercado',(mercado||[]).filter(x=>!x.done).length);set('bLivros',((livros&&livros.items)||[]).filter(x=>x.st==='lendo').length);renderIdentity();const hs=$("#homeSub");if(hs){const d=new Date(t+'T12:00:00');let s=d.toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long'});hs.textContent='Dia '+daysTogether()+' juntos · '+s.charAt(0).toUpperCase()+s.slice(1)+' · v34';}}
 (function(){const b=$("#tDieta");if(b)b.onclick=()=>$("#ovHome").classList.remove('open');})();
 (function(){const b=$("#tTV");if(b)b.onclick=()=>openTV();})();
 (function(){const b=$("#tDiogo");if(b)b.onclick=()=>openDiogo();})();
 (function(){const b=$("#tTodo");if(b)b.onclick=()=>openTodo();})();
 (function(){const b=$("#tMercado");if(b)b.onclick=()=>openMercado();})();
 (function(){const b=$("#tLivros");if(b)b.onclick=()=>openLivros();})();
-(function(){const b=$("#btnHome");if(b)b.onclick=()=>{if(person==='Manuela')goHome();else goHomeD();};})();
-(function(){const b=$("#homeLogout");if(b)b.onclick=()=>{$("#ovHome").classList.remove('open');$("#ovWho").classList.add('open');};})();
-function goHomeD(){renderHomeD();$("#ovHomeD").classList.add('open');}
-function renderHomeD(){const el=$("#idAvsD");if(el)el.innerHTML='<span class="idav idav-d">'+avImg('Diogo')+'</span>';const b=$("#bTodoD");if(b){const n=(todosD||[]).filter(x=>!x.done).length;b.textContent=n||'';b.classList.toggle('on',!!n);}const bg=$("#bGastosD");if(bg){const n=(gastos||[]).filter(x=>x.st!=='quit').length;bg.textContent=n||'';bg.classList.toggle('on',!!n);}const hs=$("#homeSubD");if(hs){const t=todayISO();const d=new Date(t+'T12:00:00');let s=d.toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long'});hs.textContent=s.charAt(0).toUpperCase()+s.slice(1)+' · v33';}}
-(function(){const b=$("#tDietaD");if(b)b.onclick=()=>$("#ovHomeD").classList.remove('open');})();
+(function(){const b=$("#btnHome");if(b)b.onclick=()=>goHome();})();
+
+/* A home do Diogo saiu em 04/09/2026. Vira no-op em vez de sumir: e
+   chamada de varios lugares, e stub e mais seguro que cacar chamador. */
+function goHomeD(){goHome();}
+function renderHomeD(){}
+
 (function(){const b=$("#tTodoD");if(b)b.onclick=()=>openTodoD();})();
-(function(){const b=$("#homeLogoutD");if(b)b.onclick=()=>{$("#ovHomeD").classList.remove('open');$("#ovWho").classList.add('open');};})();
+
 function openTodoD(){renderTodoD();$("#ovTodoD").classList.add('open');}
 function renderTodoD(){$("#todoDList").innerHTML=(todosD||[]).length?todosD.map(x=>'<div class="tkrow '+(x.done?'done':'')+'" data-id="'+x.id+'"><button class="tkck" data-act="tog">'+(x.done?'✅':'⬜')+'</button><span class="tkt">'+esc(x.t)+'</span><button class="evdel" data-act="del">🗑️</button></div>').join(''):'<div class="tvsr-hint">Nada por aqui. Adicione uma tarefa.</div>';}
 (function(){const a=$("#todoDAdd"),i=$("#todoDIn");const add=()=>{const t=i.value.trim();if(!t)return;todosD.push({id:'k'+Date.now().toString(36),t:t,done:false});ls.set('dieta-todo-d',todosD);i.value='';renderTodoD();renderHomeD();};if(a)a.onclick=add;if(i)i.addEventListener('keydown',e=>{if(e.key==='Enter')add();});})();
@@ -810,16 +812,19 @@ function applyState(o){for(const k of SYNCKEYS){if(o[k]==null)continue;if(PROTEC
 let syncDirty=false;
 async function pushCloud(fast){if(!sbc||!cloudReady)return;try{const u=(await sbc.auth.getUser()).data.user;if(!u)return;let base={};if(!fast){try{const r=await sbc.from('dieta_state').select('data').eq('user_id',u.id).maybeSingle();if(r.data&&r.data.data)base=r.data.data;}catch(e){}}await sbc.from('dieta_state').upsert({user_id:u.id,data:Object.assign(base,collectState()),updated_at:new Date().toISOString()});syncDirty=false;}catch(e){}}
 function schedulePush(){syncDirty=true;if(!cloudReady)return;clearTimeout(pushTimer);pushTimer=setTimeout(pushCloud,1500);}
-function refreshOpenUI(){try{renderAll();renderHome();try{renderHomeD()}catch(e){}const m={ovDiogo:'renderDiogo',ovMercado:'renderMercado',ovTodo:'renderTodo',ovTodoD:'renderTodoD',ovGastos:'renderGastos',ovTV:'renderTV',ovLivros:'renderLivros'};for(const id in m){const el=$("#"+id);if(el&&el.classList.contains('open')){try{window[m[id]]();}catch(e){}}}}catch(e){}}
+function refreshOpenUI(){try{renderAll();renderHome();try{renderHomeD()}catch(e){}const m={ovDiogo:'renderDiogo',ovMercado:'renderMercado',ovTodo:'renderTodo',ovTV:'renderTV',ovLivros:'renderLivros'};for(const id in m){const el=$("#"+id);if(el&&el.classList.contains('open')){try{window[m[id]]();}catch(e){}}}}catch(e){}}
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&cloudReady&&sbc){if(syncDirty){clearTimeout(pushTimer);pushCloud();}else{pullCloud().then(refreshOpenUI);}}});
 try{document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden'&&cloudReady){clearTimeout(pushTimer);pushCloud();}});window.addEventListener('pagehide',()=>{if(cloudReady){clearTimeout(pushTimer);pushCloud(true);}});}catch(e){}
 async function pullCloud(){cloudReady=false;if(!sbc)return;try{const u=(await sbc.auth.getUser()).data.user;if(!u)return;const r=await sbc.from('dieta_state').select('data').eq('user_id',u.id).maybeSingle();if(r.data&&r.data.data){applyState(r.data.data);cloudReady=true;}else{cloudReady=true;await pushCloud();}}catch(e){cloudReady=true;}}
-async function onAuthed(){await pullCloud();$("#ovAuth").classList.remove('open');person=ls.get('dieta-person','Diogo');renderAll();$("#ovWho").classList.add('open');}
-$("#authLogin").onclick=async()=>{if(!sbc){$("#authErr").textContent='Sem conexão com o servidor.';return;}const pass=$("#authPass").value;$("#authErr").textContent='';if(!pass){$("#authErr").textContent='Digite a senha.';return;}$("#authLogin").disabled=true;try{const res=await sbc.auth.signInWithPassword({email:'dieta@dieta.app',password:pass});if(res.error){$("#authErr").textContent='Senha incorreta.';}else{await onAuthed();}}catch(e){$("#authErr").textContent='Erro: '+e.message;}$("#authLogin").disabled=false;};
+
+
 $("#btnNewFood").onclick=()=>{['nfNome','nfKc','nfP','nfC','nfF'].forEach(id=>{const el=$("#"+id);if(el)el.value='';});$("#nfErr").textContent='';const g=document.querySelector('input[name=nfper][value=g]');if(g)g.checked=true;$("#ovNew").classList.add('open');};
 $("#nfSave").onclick=()=>{const nome=$("#nfNome").value.trim();const kc=+$("#nfKc").value||0,p=+$("#nfP").value||0,c=+$("#nfC").value||0,f=+$("#nfF").value||0;if(!nome||kc<=0){$("#nfErr").textContent='Preencha pelo menos nome e calorias.';return;}const per=document.querySelector('input[name=nfper]:checked').value;const pk=p*4,ck=c*4,fk=f*9;const cat=(fk>=pk&&fk>=ck)?'gord':(pk>=ck?'prot':'carb');const key='custom_'+Date.now().toString(36);const food={kc,p,c,f,per,nome,un:(per==='g'?'g':'un'),cat,fod:'low',lac:false,cur:true,custom:true};FOODS[key]=food;customFoods[key]=food;ls.set('dieta-custom',customFoods);$("#ovNew").classList.remove('open');if(curSub&&curSub.add){const ak=addKey(day,curSub.meal);const arr=(added[ak]||[]).slice();arr.push([key,per==='g'?100:1]);added[ak]=arr;ls.set('dieta-added',added);if(autoBal)rebalance();$("#ovSub").classList.remove('open');renderDay();}else if($("#ovSub").classList.contains('open')){renderCands();}};
-$("#btnLogout").onclick=async()=>{clearTimeout(pushTimer);try{await pushCloud()}catch(e){}if(sbc){try{await sbc.auth.signOut()}catch(e){}}cloudReady=false;$("#ovWho").classList.remove('open');$("#ovAuth").classList.add('open');};
+
 person=ls.get('dieta-person','Diogo');renderAll();try{applyUI()}catch(e){}try{renderWho()}catch(e){}
-const _br=$("#hdr .brand");_br.style.cursor='pointer';_br.onclick=()=>$("#ovWho").classList.add('open');
-if(sbc){sbc.auth.getSession().then(({data})=>{if(data&&data.session){onAuthed();}});}else{$("#ovAuth").classList.remove('open');$("#ovWho").classList.add('open');}
+const _br=$("#hdr .brand");_br.style.cursor='pointer';_br.onclick=()=>goHome();
+/* Sem login: o app abre direto na home. A sincronia com o Supabase saiu
+   junto com a senha — era ela que identificava o usuario. O dado agora e
+   local de cada aparelho (localStorage). */
+goHome();
 </script></body></html>
