@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#1F6FEB"><title>Manuela · TV Time · v37</title>
+<meta name="theme-color" content="#1F6FEB"><title>Manuela · TV Time · v38</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -603,7 +603,11 @@ document.querySelectorAll('#cseg button').forEach(b=>b.onclick=()=>{cperson=b.da
 $("#btnProg").onclick=()=>{$("#progName").textContent=person;const ti=todayISO();calY=+ti.slice(0,4);calM=+ti.slice(5,7)-1;renderWeight();renderCal();$("#ovProg").classList.add('open');};
 $("#btnGuia").onclick=()=>$("#ovGuia").classList.add('open');
 $("#btnCompras").onclick=()=>{cperson=person;document.querySelectorAll('#cseg button').forEach(x=>x.classList.toggle('active',x.dataset.p===person));renderCompras();$("#ovCompras").classList.add('open');};
-document.querySelectorAll('.overlay').forEach(o=>o.onclick=e=>{if(e.target===o||e.target.dataset.close!==undefined)o.classList.remove('open');});
+/* `:not(#ovTV)` -- o TV virou a TELA DO APP, nao um overlay que se fecha.
+   Tirar o botao ✕ nao bastou: este handler generico fecha no clique do
+   FUNDO, e embaixo do TV ainda esta o corpo da dieta. Sem esta excecao,
+   um toque fora do painel levava direto para a dieta. */
+document.querySelectorAll('.overlay:not(#ovTV)').forEach(o=>o.onclick=e=>{if(e.target===o||e.target.dataset.close!==undefined)o.classList.remove('open');});
 const tb=$("#themeBtn");function setTheme(t){document.body.dataset.theme=t;tb.textContent=t==='dark'?'☀️':'🌙';ls.set('dieta-theme',t);try{setAccent(person)}catch(e){}}if(ls.get('dieta-themev2')){setTheme(ls.get('dieta-theme','dark'));}else{ls.set('dieta-themev2',1);setTheme('dark');}tb.onclick=()=>setTheme(document.body.dataset.theme==='dark'?'light':'dark');
 let _lastDay=todayISO();
 function checkRollover(){const t=todayISO();if(t!==_lastDay){_lastDay=t;day=DIAS[todayWd()]||day;selDate=t;renderAll();}else{renderDays();renderWater();}}
